@@ -1,0 +1,16 @@
+.card {
+    width: 100px;
+    height: 150px;
+    background-color: rgb(90, 124, 153);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(29, 83, 29);
+    border-radius: 10px;
+    margin: 10px;
+  }
+  
+  .cardBack {
+    background-image: url(../public/imgs/cardBackground.jpg);
+  }
