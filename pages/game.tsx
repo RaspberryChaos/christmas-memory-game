@@ -18,18 +18,6 @@ const level1: CardType[] = [
     matched: false,
   },
   {
-    name: "snowman",
-    src: "/cardImgs/snowman.png",
-    clicked: false,
-    matched: false,
-  },
-  {
-    name: "santa",
-    src: "/cardImgs/santa.png",
-    clicked: false,
-    matched: false,
-  },
-  {
     name: "santa",
     src: "/cardImgs/santa.png",
     clicked: false,
@@ -38,7 +26,7 @@ const level1: CardType[] = [
 ];
 
 const Game: NextPage = () => {
-  const [level, setLevel] = useState<CardType[]>(level1);
+  const [memoryCards, setMemoryCards] = useState<CardType[]>([...level1, ...level1]);
   const [cardOne, setCardOne] = useState<CardType | null>(null);
   const [cardTwo, setCardTwo] = useState<CardType | null>(null);
   const [turns, setTurns] = useState(0);
@@ -58,18 +46,26 @@ const Game: NextPage = () => {
   const checkMatch = () => {
     if (cardOne && cardTwo) {
       cardOne.name === cardTwo.name
-        ? console.log("match")
+        ? setMemoryCards(prevCards => prevCards.map(card => {
+            if(card.name === cardOne.name) {
+                console.log("match")
+                return {...card, matched: true};
+            } else {
+                return card;
+            }
+        }))
         : console.log("no match");
     }
     setCardOne(null);
     setCardTwo(null);
     setTurns((prev) => prev + 1);
+    console.log(memoryCards)
   };
 
   return (
     <section className={styles.container}>
       <div className={styles.cardGrid}>
-        {level.map((card, i) => (
+        {memoryCards.map((card, i) => (
           <Card card={card} key={i} handleCardClick={handleChoice} />
         ))}
       </div>
