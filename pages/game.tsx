@@ -41,12 +41,29 @@ const Game: NextPage = () => {
 
   useEffect(() => {
     if (cardOne && cardTwo) {
-      checkMatch();
+      if (cardOne.name === cardTwo.name) {
+        setMemoryCards((prevCards) =>
+          prevCards.map((card) => {
+            if (card.name === cardOne.name) {
+              console.log("match");
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          })
+        );
+        reset();
+      } else {
+        const timeout = setTimeout(() => {
+          reset();
+          console.log("checking match");
+        }, 600);
+      }
     }
   }, [cardTwo]);
 
   const handleChoice = (card: CardType): void => {
-    if (card.matched || card === cardOne) return;
+    if (card.matched || card === cardOne || cardTwo) return;
     console.log("Card clicked");
     console.log(card);
     cardOne ? setCardTwo(card) : setCardOne(card);
@@ -59,21 +76,7 @@ const Game: NextPage = () => {
     setMemoryCards(array);
   };
 
-  const checkMatch = () => {
-    if (cardOne && cardTwo) {
-      cardOne.name === cardTwo.name
-        ? setMemoryCards((prevCards) =>
-            prevCards.map((card) => {
-              if (card.name === cardOne.name) {
-                console.log("match");
-                return { ...card, matched: true };
-              } else {
-                return card;
-              }
-            })
-          )
-        : console.log("no match");
-    }
+  const reset = () => {
     setCardOne(null);
     setCardTwo(null);
     setTurns((prev) => prev + 1);
@@ -92,8 +95,8 @@ const Game: NextPage = () => {
           />
         ))}
       </div>
-      {cardOne && <p>Card 1 : {cardOne.name}</p>}
-      {cardTwo && <p>Card 2 : {cardTwo.name}</p>}
+      {/* {cardOne && <p>Card 1 : {cardOne.name}</p>}
+      {cardTwo && <p>Card 2 : {cardTwo.name}</p>} */}
       <p>Turns: {turns}</p>
     </section>
   );
