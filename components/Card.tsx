@@ -24,9 +24,10 @@ const Card: React.FC<Props> = ({ card, handleCardClick, clicked }) => {
       <Image
         src={card.src}
         alt={card.name}
-        width="260"
+        width="100"
         height="100"
         layout="fixed"
+        priority={true}
         className={styles.cardImg}
       />
     }
