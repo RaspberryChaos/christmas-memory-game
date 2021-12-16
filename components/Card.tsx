@@ -14,23 +14,32 @@ const Card: React.FC<Props> = ({ card, handleCardClick, clicked }) => {
   };
 
   return (
-    <div
-      className={
-        clicked ? `${styles.card}` : `${styles.card} ${styles.cardBack}`
-      }
-      onClick={handleClick}
-    >
-    {clicked && 
+    <div className={styles.card} onClick={handleClick}>
       <Image
         src={card.src}
         alt={card.name}
         width="100"
         height="100"
-        layout="fixed"
+        layout="intrinsic"
         priority={true}
-        className={styles.cardImg}
+        className={
+          clicked
+            ? `${styles.cardFront} ${styles.cardFrontClicked}`
+            : `${styles.cardFront}`
+        }
       />
-    }
+
+      <Image
+        src={"/imgs/cardBackground.jpg"}
+        alt="card back"
+        layout="fill"
+        priority={true}
+        className={
+          clicked
+            ? `${styles.cardBack} ${styles.cardBackClicked}`
+            : `${styles.cardBack}`
+        }
+      />
     </div>
   );
 };

@@ -1,16 +1,34 @@
 .card {
-    width: 100px;
-    height: 150px;
-    background-color: rgb(53 157 247);
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid rgb(29, 83, 29);
-    border-radius: 10px;
-    margin: 10px;
-  }
-  
-  .cardBack {
-    background-image: url(../public/imgs/cardBackground.jpg);
-  }
+  width: 100px;
+  height: 120px;
+  background-color: rgb(53 157 247);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+.cardFront {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  width: 100%;
+}
+
+.cardFrontClicked {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+.cardBack {
+  transform: rotateY(0deg);
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+  border-radius: 10px;
+}
+
+.cardBackClicked {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
