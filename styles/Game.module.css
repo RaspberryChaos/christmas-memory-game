@@ -1,37 +1,16 @@
 .container {
-    background-color: rgb(32, 76, 116);
-    height: 100vh;
-    background-image: url(../public/imgs/background.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .panel {
-    background-image: url(../public/imgs/uiPanel1.png);
-    width: 960px;
-    height: 640px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  background-color: rgb(32, 76, 116);
+  height: 100vh;
+  background-image: url(../public/imgs/background.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .card {
-      width: 100px;
-      height: 150px;
-      background-color: green;
-      background-image: url(../public/imgs/cardBackground.jpg);
-      background-size: cover;
-      border: 2px solid rgb(29, 83, 29);
-      border-radius: 10px;
-      margin: 10px;
-  }
-
-  .cardGrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-  }
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
