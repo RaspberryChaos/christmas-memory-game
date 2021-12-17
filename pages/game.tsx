@@ -1,44 +1,25 @@
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
+import { cardList, CardType } from "../levels";
 import styles from "../styles/Game.module.css";
 
-export interface CardType {
-  name: string;
-  src: string;
-  matched: boolean;
-  id?: number;
-}
-
-const level1: CardType[] = [
-  {
-    name: "snowman",
-    src: "/cardImgs/snowman.png",
-    matched: false,
-  },
-  {
-    name: "santa",
-    src: "/cardImgs/santa.png",
-    matched: false,
-  },
-  { name: "penguin", src: "/cardImgs/penguin.png", matched: false },
-  { name: "reindeer", src: "/cardImgs/reindeer.png", matched: false },
-  { name: "candyCanes", src: "/cardImgs/candyCanes.png", matched: false },
-];
-
 const Game: NextPage = () => {
-  const [memoryCards, setMemoryCards] = useState<CardType[]>([
-    ...level1,
-    ...level1,
-  ]);
+
+  //State
+  const [memoryCards, setMemoryCards] = useState<CardType[] | []>([]);
   const [cardOne, setCardOne] = useState<CardType | null>(null);
   const [cardTwo, setCardTwo] = useState<CardType | null>(null);
   const [turns, setTurns] = useState(0);
+  const [level, setLevel] = useState(1);
+  const [levelComplete, setLevelComplete] = useState(false);
 
+  //Shuffle and set first cards
   useEffect(() => {
-    shuffleCards(memoryCards);
+    shuffleCards();
   }, []);
 
+  //Check if cards match when second card is clicked
   useEffect(() => {
     if (cardOne && cardTwo) {
       if (cardOne.name === cardTwo.name) {
@@ -62,6 +43,21 @@ const Game: NextPage = () => {
     }
   }, [cardTwo]);
 
+  //Check if level is complete
+  useEffect(() => {
+    checkWin();
+  }, [memoryCards]);
+
+  //Set up next level
+  useEffect(() => {
+    setLevelComplete(false);
+    setCardOne(null);
+    setCardTwo(null);
+    setTurns(0);
+    shuffleCards();
+  }, [level]);
+
+  //Handle card click
   const handleChoice = (card: CardType): void => {
     if (card.matched || card === cardOne || cardTwo) return;
     console.log("Card clicked");
@@ -69,22 +65,37 @@ const Game: NextPage = () => {
     cardOne ? setCardTwo(card) : setCardOne(card);
   };
 
-  const shuffleCards = (cards: Array<CardType>): void => {
-    const shuffled = cards.sort(() => Math.random() - Math.random());
-    console.log("shuffled");
+  //Shuffle cards into random order
+  const shuffleCards = (): void => {
+    const cards = [...cardList].splice(0, level * 2);
+    const shuffled = [...cards, ...cards].sort(
+      () => Math.random() - Math.random()
+    );
+    console.log("shuffled", [shuffled]);
+    console.log("level", level);
     const array = shuffled.map((el, i) => ({ ...el, id: i }));
     setMemoryCards(array);
   };
 
-  const reset = () => {
+  //Reset card one and two
+  const reset = (): void => {
     setCardOne(null);
     setCardTwo(null);
     setTurns((prev) => prev + 1);
-    console.log(memoryCards);
+  };
+
+  //Check if level is complete
+  const checkWin = (): void => {
+    console.log("check win?");
+    if (memoryCards && memoryCards.every((card) => card.matched)) {
+      console.log("Game WON!");
+      if (level < 8) setLevelComplete(true);
+    }
   };
 
   return (
     <section className={styles.container}>
+      <h2>Level {level}</h2>
       <div className={styles.cardGrid}>
         {memoryCards.map((card, i) => (
           <Card
@@ -95,9 +106,12 @@ const Game: NextPage = () => {
           />
         ))}
       </div>
-      {/* {cardOne && <p>Card 1 : {cardOne.name}</p>}
-      {cardTwo && <p>Card 2 : {cardTwo.name}</p>} */}
       <p>Turns: {turns}</p>
+      {levelComplete && (
+        <button onClick={() => setLevel((prev) => prev + 1)}>
+          Next Level!
+        </button>
+      )}
     </section>
   );
 };

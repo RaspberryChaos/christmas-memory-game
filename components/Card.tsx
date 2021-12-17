@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "../styles/Card.module.css";
-import { CardType } from "../pages/game";
+import { CardType } from "../levels";
 
 type Props = {
   card: CardType;
