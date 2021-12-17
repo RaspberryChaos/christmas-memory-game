@@ -11,17 +11,77 @@
 }
 
 .panel {
-  background-image: url(../public/imgs/uiPanel1.png);
-  width: 960px;
-  height: 640px;
+  background-image: url(../public/imgs/uiPanel-mobile.png);
+  width: 320px;
+  height: 480px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  padding-top: 80px;
+  padding-bottom: 50px;
 }
 
 .title {
-  color: #fff;
-  font-size: 4rem;
-  font-family: cursive;
+  color: var(--clr-headings);
+  font-size: 36px;
+  font-family: var(--ff-headings);
+  text-shadow: var(--shadow-headings);
+  padding: 10px;
+  text-align: center;
+}
+
+.playBtnContainer {
+  width: 80px;
+  margin: 10px;
+}
+
+.iconContainer {
+  display: flex;
+  width: 300px;
+  justify-content: center;
+}
+
+.icon {
+  margin: 20px;
+}
+
+/*MEDIA QUERIES*/
+
+/*Extra Small, Mobile*/
+@media (min-width: 500px) {
+  .panel {
+    background-image: url(../public/imgs/uiPanel-tablet.png);
+    width: 480px;
+    height: 320px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+}
+/* Small Devices, Tablets */
+@media (min-width: 768px) {
+}
+
+/* Medium Devices, Desktops */
+@media (min-width: 992px) {
+  .panel {
+    background-image: url(../public/imgs/uiPanel-desktop.png);
+    width: 960px;
+    height: 640px;
+  }
+
+  .title {
+    font-size: 76px;
+  }
+
+  .playBtnContainer {
+    width: 120px;
+  }
+
+  .iconContainer {
+    width: 500px;
+  }
 }
