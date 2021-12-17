@@ -5,7 +5,6 @@ import { cardList, CardType } from "../levels";
 import styles from "../styles/Game.module.css";
 
 const Game: NextPage = () => {
-
   //State
   const [memoryCards, setMemoryCards] = useState<CardType[] | []>([]);
   const [cardOne, setCardOne] = useState<CardType | null>(null);
@@ -96,7 +95,22 @@ const Game: NextPage = () => {
   return (
     <section className={styles.container}>
       <h2>Level {level}</h2>
-      <div className={styles.cardGrid}>
+      <div
+      style={{display: "grid", gridGap: "20px"}}
+        className={
+          level === 1
+            ? styles.level1
+            : level < 5
+            ? styles.level2
+            : level === 5
+            ? styles.level5
+            : level === 6
+            ? styles.level6
+            : level === 7
+            ? styles.level7
+            : styles.level8
+        }
+      >
         {memoryCards.map((card, i) => (
           <Card
             card={card}

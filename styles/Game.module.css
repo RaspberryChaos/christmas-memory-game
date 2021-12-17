@@ -11,8 +11,21 @@
   align-items: center;
 }
 
-.cardGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+.level1 {
+  grid-template-columns: 1fr 1fr;
+}
+.level2 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.level5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+.level6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+.level7 {
+  grid-template-columns: repeat(7, 1fr);
+}
+.level8 {
+  grid-template-columns: repeat(8, 1fr);
 }
