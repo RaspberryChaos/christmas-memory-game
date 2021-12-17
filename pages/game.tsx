@@ -12,6 +12,7 @@ const Game: NextPage = () => {
   const [turns, setTurns] = useState(0);
   const [level, setLevel] = useState(1);
   const [levelComplete, setLevelComplete] = useState(false);
+  const [score, setScore] = useState(0);
 
   //Shuffle and set first cards
   useEffect(() => {
@@ -22,6 +23,7 @@ const Game: NextPage = () => {
   useEffect(() => {
     if (cardOne && cardTwo) {
       if (cardOne.name === cardTwo.name) {
+        setScore((prev) => prev + 10);
         setMemoryCards((prevCards) =>
           prevCards.map((card) => {
             if (card.name === cardOne.name) {
@@ -44,16 +46,16 @@ const Game: NextPage = () => {
 
   //Check if level is complete
   useEffect(() => {
-    checkWin();
+    if (memoryCards.length > 0) {
+      checkWin();
+    }
   }, [memoryCards]);
 
   //Set up next level
   useEffect(() => {
-    setLevelComplete(false);
-    setCardOne(null);
-    setCardTwo(null);
-    setTurns(0);
-    shuffleCards();
+    if (level > 1) {
+      nextLevel();
+    }
   }, [level]);
 
   //Handle card click
@@ -86,17 +88,30 @@ const Game: NextPage = () => {
   //Check if level is complete
   const checkWin = (): void => {
     console.log("check win?");
-    if (memoryCards && memoryCards.every((card) => card.matched)) {
+    if (memoryCards.length > 0 && memoryCards.every((card) => card.matched)) {
       console.log("Game WON!");
+      console.log("points scored", memoryCards);
+      let roundBonus = level * 10;
+      setScore((prev) => prev + roundBonus);
       if (level < 8) setLevelComplete(true);
     }
+  };
+
+  //Change level
+  const nextLevel = (): void => {
+    console.log("next level");
+    setLevelComplete(false);
+    setCardOne(null);
+    setCardTwo(null);
+    setTurns(0);
+    shuffleCards();
   };
 
   return (
     <section className={styles.container}>
       <h2>Level {level}</h2>
       <div
-      style={{display: "grid", gridGap: "20px"}}
+        style={{ display: "grid", gridGap: "20px" }}
         className={
           level === 1
             ? styles.level1
@@ -121,6 +136,7 @@ const Game: NextPage = () => {
         ))}
       </div>
       <p>Turns: {turns}</p>
+      <p>Score: {score}</p>
       {levelComplete && (
         <button onClick={() => setLevel((prev) => prev + 1)}>
           Next Level!
