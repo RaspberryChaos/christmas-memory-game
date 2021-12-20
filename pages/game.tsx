@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
+import Timer from "../components/Timer";
 import { cardList, CardType } from "../levels";
 import styles from "../styles/Game.module.css";
 
@@ -137,6 +138,7 @@ const Game: NextPage = () => {
       </div>
       <p>Turns: {turns}</p>
       <p>Score: {score}</p>
+      <Timer level={level} levelComplete={levelComplete}/>
       {levelComplete && (
         <button onClick={() => setLevel((prev) => prev + 1)}>
           Next Level!
