@@ -14,6 +14,8 @@ const Game: NextPage = () => {
   const [level, setLevel] = useState(1);
   const [levelComplete, setLevelComplete] = useState(false);
   const [score, setScore] = useState(0);
+  const [minutes, setMinutes] = useState(10);
+  const [seconds, setSeconds] = useState(10);
 
   //Shuffle and set first cards
   useEffect(() => {
@@ -91,9 +93,11 @@ const Game: NextPage = () => {
     console.log("check win?");
     if (memoryCards.length > 0 && memoryCards.every((card) => card.matched)) {
       console.log("Game WON!");
+      console.log("Time remaining:" + minutes + seconds)
       console.log("points scored", memoryCards);
       let roundBonus = level * 10;
-      setScore((prev) => prev + roundBonus);
+      let timeBonus = minutes ? (minutes * 60) + seconds : seconds;
+      setScore((prev) => prev + roundBonus + timeBonus);
       if (level < 8) setLevelComplete(true);
     }
   };
@@ -108,8 +112,38 @@ const Game: NextPage = () => {
     shuffleCards();
   };
 
+  //Timer
+
+  useEffect(() => {
+    const time = level * 10;
+    let mins = Math.floor(time / 60);
+    let secs = time % 60;
+    setMinutes(mins);
+    setSeconds(secs);
+  }, [level]);
+
+  useEffect(() => {
+    console.log("timer running");
+    if ((seconds === 0 && minutes === 0) || levelComplete) return;
+    const interval =
+      seconds > 0
+        ? setInterval(() => {
+            setSeconds((prevSeconds) => prevSeconds - 1);
+          }, 1000)
+        : setInterval(() => {
+            setMinutes((prevMinutes) => prevMinutes - 1);
+            setSeconds(59);
+          }, 1000);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [seconds, minutes]);
+
   return (
     <section className={styles.container}>
+      
       <h2>Level {level}</h2>
       <div
         style={{ display: "grid", gridGap: "20px" }}
@@ -138,7 +172,7 @@ const Game: NextPage = () => {
       </div>
       <p>Turns: {turns}</p>
       <p>Score: {score}</p>
-      <Timer level={level} levelComplete={levelComplete}/>
+      <Timer minutes={minutes} seconds={seconds}/>
       {levelComplete && (
         <button onClick={() => setLevel((prev) => prev + 1)}>
           Next Level!
