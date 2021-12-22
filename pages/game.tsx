@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Timer from "../components/Timer";
+import Modal from "../components/Modal";
 import { cardList, CardType } from "../levels";
 import styles from "../styles/Game.module.css";
 
@@ -93,12 +94,12 @@ const Game: NextPage = () => {
     console.log("check win?");
     if (memoryCards.length > 0 && memoryCards.every((card) => card.matched)) {
       console.log("Game WON!");
-      console.log("Time remaining:" + minutes + seconds)
+      console.log("Time remaining:" + minutes + seconds);
       console.log("points scored", memoryCards);
-      let roundBonus = level * 10;
-      let timeBonus = minutes ? (minutes * 60) + seconds : seconds;
-      setScore((prev) => prev + roundBonus + timeBonus);
       if (level < 8) setLevelComplete(true);
+      let roundBonus = level * 10;
+      let timeBonus = minutes ? minutes * 60 + seconds : seconds;
+      setScore((prev) => prev + roundBonus + timeBonus);
     }
   };
 
@@ -143,40 +144,45 @@ const Game: NextPage = () => {
 
   return (
     <section className={styles.container}>
-      
-      <h2>Level {level}</h2>
-      <div
-        style={{ display: "grid", gridGap: "20px" }}
-        className={
-          level === 1
-            ? styles.level1
-            : level < 5
-            ? styles.level2
-            : level === 5
-            ? styles.level5
-            : level === 6
-            ? styles.level6
-            : level === 7
-            ? styles.level7
-            : styles.level8
-        }
-      >
-        {memoryCards.map((card, i) => (
-          <Card
-            card={card}
-            key={i}
-            handleCardClick={handleChoice}
-            clicked={card === cardOne || card === cardTwo || card.matched}
-          />
-        ))}
-      </div>
-      <p>Turns: {turns}</p>
-      <p>Score: {score}</p>
-      <Timer minutes={minutes} seconds={seconds}/>
+      {!levelComplete && (
+        <>
+          <h2>Level {level}</h2>
+          <div
+            style={{ display: "grid", gridGap: "20px" }}
+            className={
+              level === 1
+                ? styles.level1
+                : level < 5
+                ? styles.level2
+                : level === 5
+                ? styles.level5
+                : level === 6
+                ? styles.level6
+                : level === 7
+                ? styles.level7
+                : styles.level8
+            }
+          >
+            {memoryCards.map((card, i) => (
+              <Card
+                card={card}
+                key={i}
+                handleCardClick={handleChoice}
+                clicked={card === cardOne || card === cardTwo || card.matched}
+              />
+            ))}
+          </div>
+          <p>Turns: {turns}</p>
+          <p>Score: {score}</p>
+          <Timer minutes={minutes} seconds={seconds} />
+        </>
+      )}
       {levelComplete && (
-        <button onClick={() => setLevel((prev) => prev + 1)}>
-          Next Level!
-        </button>
+        <Modal level={level} score={score} minutes={minutes} seconds={seconds}>
+          <button onClick={() => setLevel((prev) => prev + 1)}>
+            Next Level!
+          </button>
+        </Modal>
       )}
     </section>
   );
