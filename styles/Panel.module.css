@@ -8,7 +8,7 @@
   align-items: center;
   padding-top: 80px;
   padding-bottom: 50px;
-  color: #fff;
+  color: var(--clr-headings);
 }
 
 .title {

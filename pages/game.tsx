@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import Timer from "../components/Timer";
 import Panel from "../components/Panel";
 import Icon from "../components/Icon";
+import GameWon from "../components/GameWon";
 import NextLevel from "../components/NextLevel";
 import { cardList, CardType } from "../levels";
 import styles from "../styles/Game.module.css";
@@ -179,7 +180,7 @@ const Game: NextPage = () => {
           <Timer minutes={minutes} seconds={seconds} />
         </>
       )}
-      {levelComplete && (
+      {levelComplete && (level < 2 ? (
         <Panel title={`Level ${level} Complete!`}>
           <NextLevel
             level={level}
@@ -194,6 +195,10 @@ const Game: NextPage = () => {
             <Icon src="/imgs/buttons/play.png" />
           </div>
         </Panel>
+      ) : (
+        <Panel title="You completed the game!">
+          <GameWon score={score} />
+        </Panel>)
       )}
     </section>
   );
