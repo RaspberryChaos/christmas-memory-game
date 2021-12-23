@@ -16,3 +16,14 @@
 .level8 {
   grid-template-columns: repeat(8, 1fr);
 }
+
+.btnContainer {
+  width: 100px;
+}
+
+/* Medium Devices, Desktops */
+@media (min-width: 992px) {
+  .btnContainer {
+    width: 150px;
+  }
+}

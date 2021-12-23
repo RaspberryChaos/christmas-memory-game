@@ -187,7 +187,10 @@ const Game: NextPage = () => {
             minutes={minutes}
             seconds={seconds}
           />
-          <div onClick={() => setLevel((prev) => prev + 1)}>
+          <div
+            className={styles.btnContainer}
+            onClick={() => setLevel((prev) => prev + 1)}
+          >
             <Icon src="/imgs/buttons/play.png" />
           </div>
         </Panel>

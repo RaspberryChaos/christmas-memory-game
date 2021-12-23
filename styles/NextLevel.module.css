@@ -1,17 +1,39 @@
+.textContainer {
+  height: 120px;
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+}
+
 .text {
   text-shadow: var(--shadow-text);
   font-size: 20px;
-  animation: fadeIn 2s;
+  animation: fadeIn 1s;
 }
 
 @keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
+  0% {
+    opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*Extra Small, Mobile*/
+@media (min-width: 500px) {
+  .textContainer {
+    margin-top: 0;
+  }
+}
 
 /* Medium Devices, Desktops */
 @media (min-width: 992px) {
   .text {
-    font-size: 30px;
+    font-size: 32px;
+  }
+  .textContainer {
+    height: 180px;
+    width: 300px;
   }
 }
