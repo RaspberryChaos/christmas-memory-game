@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Icon from "../components/Icon";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -20,35 +21,9 @@ const Home: NextPage = () => {
           </a>
         </div>
         <div className={styles.iconContainer}>
-          <div className={styles.icon}>
-            <Image
-              src={"/imgs/buttons/help.png"}
-              width="100"
-              height="100"
-              layout="intrinsic"
-              priority={true}
-              className={styles.icon}
-            />
-          </div>
-          <div className={styles.icon}>
-            <Image
-              src={"/imgs/buttons/highScore.png"}
-              width="100"
-              height="100"
-              layout="intrinsic"
-              priority={true}
-            />
-          </div>
-          <div className={styles.icon}>
-            <Image
-              src={"/imgs/buttons/sound-off.png"}
-              width="100"
-              height="100"
-              layout="intrinsic"
-              priority={true}
-              className={styles.icon}
-            />
-          </div>
+          <Icon src="/imgs/buttons/help.png" />
+          <Icon src="/imgs/buttons/highScore.png" />
+          <Icon src="/imgs/buttons/sound-off.png" />
         </div>
       </div>
     </section>
