@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import Timer from "../components/Timer";
 import Panel from "../components/Panel";
 import Icon from "../components/Icon";
+import Level from "../components/Level";
 import GameWon from "../components/GameWon";
 import NextLevel from "../components/NextLevel";
 import { cardList, CardType } from "../levels";
@@ -148,58 +149,38 @@ const Game: NextPage = () => {
   return (
     <section className="container">
       {!levelComplete && (
-        <>
-          <h2>Level {level}</h2>
-          <div
-            style={{ display: "grid", gridGap: "20px" }}
-            className={
-              level === 1
-                ? styles.level1
-                : level < 5
-                ? styles.level2
-                : level === 5
-                ? styles.level5
-                : level === 6
-                ? styles.level6
-                : level === 7
-                ? styles.level7
-                : styles.level8
-            }
-          >
-            {memoryCards.map((card, i) => (
-              <Card
-                card={card}
-                key={i}
-                handleCardClick={handleChoice}
-                clicked={card === cardOne || card === cardTwo || card.matched}
-              />
-            ))}
-          </div>
-          <p>Turns: {turns}</p>
-          <p>Score: {score}</p>
-          <Timer minutes={minutes} seconds={seconds} />
-        </>
+        <Level
+          level={level}
+          memoryCards={memoryCards}
+          score={score}
+          minutes={minutes}
+          seconds={seconds}
+          handleChoice={handleChoice}
+          cardOne={cardOne}
+          cardTwo={cardTwo}
+        />
       )}
-      {levelComplete && (level < 2 ? (
-        <Panel title={`Level ${level} Complete!`}>
-          <NextLevel
-            level={level}
-            score={score}
-            minutes={minutes}
-            seconds={seconds}
-          />
-          <div
-            className={styles.btnContainer}
-            onClick={() => setLevel((prev) => prev + 1)}
-          >
-            <Icon src="/imgs/buttons/play.png" />
-          </div>
-        </Panel>
-      ) : (
-        <Panel title="You completed the game!">
-          <GameWon score={score} />
-        </Panel>)
-      )}
+      {levelComplete &&
+        (level < 3 ? (
+          <Panel title={`Level ${level} Complete!`}>
+            <NextLevel
+              level={level}
+              score={score}
+              minutes={minutes}
+              seconds={seconds}
+            />
+            <div
+              className={styles.btnContainer}
+              onClick={() => setLevel((prev) => prev + 1)}
+            >
+              <Icon src="/imgs/buttons/play.png" />
+            </div>
+          </Panel>
+        ) : (
+          <Panel title="You completed the game!">
+            <GameWon score={score} />
+          </Panel>
+        ))}
     </section>
   );
 };

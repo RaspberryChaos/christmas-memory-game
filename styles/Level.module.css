@@ -1,0 +1,45 @@
+.level1 {
+  grid-template-columns: 1fr 1fr;
+}
+.level2 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.level5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+.level6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+.level7 {
+  grid-template-columns: repeat(7, 1fr);
+}
+.level8 {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.levelContainer {
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+}
+
+.title {
+  font-size: 60px;
+  text-shadow: var(--shadow-text);
+  padding: 10px;
+}
+
+.score {
+  font-size: 28px;
+  text-shadow: var(--shadow-text);
+  padding-bottom: 10px;
+}
+
+.iconContainer {
+  display: flex;
+  width: 180px;
+  align-self: flex-end;
+  position: absolute;
+  top: 0;
+}

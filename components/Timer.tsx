@@ -3,13 +3,17 @@ type Props = {
   seconds: number;
 };
 
+const timerStyle = {
+  fontSize: 30,
+  margin: 10,
+  textShadow: `var(--shadow-text)`,
+};
+
 const Timer: React.FC<Props> = ({ minutes, seconds }) => {
   return (
-    <div className="clock">
-      <p>
-        0{minutes}:{seconds < 10 ? "0" + seconds : seconds}
-      </p>
-    </div>
+    <p style={timerStyle}>
+      Time: 0{minutes}:{seconds < 10 ? "0" + seconds : seconds}
+    </p>
   );
 };
 
