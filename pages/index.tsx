@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         </div>
         <div className={styles.iconContainer}>
           <Icon src="/imgs/buttons/help.png" link="/help"/>
-          <Icon src="/imgs/buttons/highScore.png" />
+          <Icon src="/imgs/buttons/highScore.png" link="highscores" />
           <Icon src="/imgs/buttons/sound-off.png" />
         </div>
       </Panel>
