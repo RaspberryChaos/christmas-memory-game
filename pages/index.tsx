@@ -2,13 +2,13 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Icon from "../components/Icon";
+import Modal from "../components/Modal";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
     <section className={styles.container}>
-      <div className={styles.panel}>
-        <h1 className={styles.title}>Christmas Memory Game</h1>
+      <Modal title="Christmas Memory Game">
         <div className={styles.playBtnContainer}>
           <a href="/game">
             <Image
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
           <Icon src="/imgs/buttons/highScore.png" />
           <Icon src="/imgs/buttons/sound-off.png" />
         </div>
-      </div>
+      </Modal>
     </section>
   );
 };
