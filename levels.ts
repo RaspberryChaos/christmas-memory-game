@@ -21,5 +21,5 @@ export const cardList: CardType[] = [
   { name: "north pole", src: "/cardImgs/northPole.png", matched: false },
   { name: "santa face", src: "/cardImgs/santaFace.png", matched: false },
   { name: "santa sleigh", src: "/cardImgs/santaSleigh.png", matched: false },
-  { name: "snowflake", src: "/cardImgs/snowflake.png", matched: false },
+  { name: "stocking", src: "/cardImgs/stocking.png", matched: false },
 ];

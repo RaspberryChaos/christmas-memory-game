@@ -30,7 +30,7 @@ const Card: React.FC<Props> = ({ card, handleCardClick, clicked }) => {
       />
 
       <Image
-        src={"/imgs/cardBackground.jpg"}
+        src={"/imgs/cardBg.jpg"}
         alt="card back"
         layout="fill"
         priority={true}

@@ -13,7 +13,7 @@ const HighScores: NextPage = () => {
         <Panel title="High Score Table">
           <p>Coming Soon!</p>
           <div style={{ display: "flex" }}>
-            <Icon src="/imgs/buttons/back.png" link="/" />
+            <Icon src="/imgs/buttons/homeBtn.png" link="/" />
             <Icon src="/imgs/buttons/play.png" link="/game" />
           </div>
         </Panel>
