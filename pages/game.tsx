@@ -144,7 +144,7 @@ const Game: NextPage = () => {
   }, [seconds, minutes]);
 
   return (
-    <section className={styles.container}>
+    <section className="container">
       {!levelComplete && (
         <>
           <h2>Level {level}</h2>

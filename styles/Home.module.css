@@ -1,15 +1,3 @@
-.container {
-  background-color: rgb(32, 76, 116);
-  height: 100vh;
-  background-image: url(../public/imgs/background.png);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .playBtnContainer {
   width: 80px;
   margin: 10px;

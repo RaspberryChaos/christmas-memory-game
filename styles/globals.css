@@ -16,3 +16,16 @@
 body {
   font-family: var(--ff-headings);
 }
+
+.container {
+  background-color: rgb(32, 76, 116);
+  height: 100vh;
+  background-image: url(../public/imgs/background.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

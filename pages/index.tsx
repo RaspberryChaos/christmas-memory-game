@@ -7,7 +7,7 @@ import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
-    <section className={styles.container}>
+    <section className="container">
       <Modal title="Christmas Memory Game">
         <div className={styles.playBtnContainer}>
           <a href="/game">
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
           </a>
         </div>
         <div className={styles.iconContainer}>
-          <Icon src="/imgs/buttons/help.png" />
+          <Icon src="/imgs/buttons/help.png" link="/help"/>
           <Icon src="/imgs/buttons/highScore.png" />
           <Icon src="/imgs/buttons/sound-off.png" />
         </div>
