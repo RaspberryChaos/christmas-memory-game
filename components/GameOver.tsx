@@ -1,11 +1,11 @@
 import styles from "../styles/GameWon.module.css";
-import Icon from "../components/Icon";
+import Icon from "./Icon";
 
 type Props = {
   score: number;
 };
 
-const GameWon: React.FC<Props> = ({ score }) => {
+const GameOver: React.FC<Props> = ({ score }) => {
   return (
     <>
       <p className={styles.text}>Final score: {score}</p>
@@ -17,4 +17,4 @@ const GameWon: React.FC<Props> = ({ score }) => {
   );
 };
 
-export default GameWon;
+export default GameOver;

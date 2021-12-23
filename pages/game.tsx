@@ -1,11 +1,9 @@
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
-import Card from "../components/Card";
-import Timer from "../components/Timer";
 import Panel from "../components/Panel";
 import Icon from "../components/Icon";
 import Level from "../components/Level";
-import GameWon from "../components/GameWon";
+import GameOver from "../components/GameOver";
 import NextLevel from "../components/NextLevel";
 import { cardList, CardType } from "../levels";
 import styles from "../styles/Game.module.css";
@@ -21,11 +19,28 @@ const Game: NextPage = () => {
   const [score, setScore] = useState(0);
   const [minutes, setMinutes] = useState(10);
   const [seconds, setSeconds] = useState(10);
+  const [timeUp, setTimeUp] = useState(false);
 
   //Shuffle and set first cards
   useEffect(() => {
     shuffleCards();
   }, []);
+
+  //Shuffle cards into random order
+  const shuffleCards = (): void => {
+    const cards = [...cardList].splice(0, level * 2);
+    const shuffled = [...cards, ...cards].sort(
+      () => Math.random() - Math.random()
+    );
+    const array = shuffled.map((el, i) => ({ ...el, id: i }));
+    setMemoryCards(array);
+  };
+
+  //Handle card click
+  const handleChoice = (card: CardType): void => {
+    if (card.matched || card === cardOne || cardTwo) return;
+    cardOne ? setCardTwo(card) : setCardOne(card);
+  };
 
   //Check if cards match when second card is clicked
   useEffect(() => {
@@ -35,7 +50,6 @@ const Game: NextPage = () => {
         setMemoryCards((prevCards) =>
           prevCards.map((card) => {
             if (card.name === cardOne.name) {
-              console.log("match");
               return { ...card, matched: true };
             } else {
               return card;
@@ -46,45 +60,10 @@ const Game: NextPage = () => {
       } else {
         const timeout = setTimeout(() => {
           reset();
-          console.log("checking match");
-        }, 600);
+        }, 500);
       }
     }
   }, [cardTwo]);
-
-  //Check if level is complete
-  useEffect(() => {
-    if (memoryCards.length > 0) {
-      checkWin();
-    }
-  }, [memoryCards]);
-
-  //Set up next level
-  useEffect(() => {
-    if (level > 1) {
-      nextLevel();
-    }
-  }, [level]);
-
-  //Handle card click
-  const handleChoice = (card: CardType): void => {
-    if (card.matched || card === cardOne || cardTwo) return;
-    console.log("Card clicked");
-    console.log(card);
-    cardOne ? setCardTwo(card) : setCardOne(card);
-  };
-
-  //Shuffle cards into random order
-  const shuffleCards = (): void => {
-    const cards = [...cardList].splice(0, level * 2);
-    const shuffled = [...cards, ...cards].sort(
-      () => Math.random() - Math.random()
-    );
-    console.log("shuffled", [shuffled]);
-    console.log("level", level);
-    const array = shuffled.map((el, i) => ({ ...el, id: i }));
-    setMemoryCards(array);
-  };
 
   //Reset card one and two
   const reset = (): void => {
@@ -94,22 +73,31 @@ const Game: NextPage = () => {
   };
 
   //Check if level is complete
+  useEffect(() => {
+    if (memoryCards.length > 0) {
+      checkWin();
+    }
+  }, [memoryCards]);
+
+  //Check if level is complete
   const checkWin = (): void => {
-    console.log("check win?");
     if (memoryCards.length > 0 && memoryCards.every((card) => card.matched)) {
-      console.log("Game WON!");
-      console.log("Time remaining:" + minutes + seconds);
-      console.log("points scored", memoryCards);
-      if (level < 8) setLevelComplete(true);
+      if (level <= 8) setLevelComplete(true);
       let roundBonus = level * 10;
       let timeBonus = minutes ? minutes * 60 + seconds : seconds;
       setScore((prev) => prev + roundBonus + timeBonus);
     }
   };
 
+  //Set up next level
+  useEffect(() => {
+    if (level > 1) {
+      nextLevel();
+    }
+  }, [level]);
+
   //Change level
   const nextLevel = (): void => {
-    console.log("next level");
     setLevelComplete(false);
     setCardOne(null);
     setCardTwo(null);
@@ -120,7 +108,7 @@ const Game: NextPage = () => {
   //Timer
 
   useEffect(() => {
-    const time = level * 10;
+    const time = level < 4 ? level * 10 : level * 15;
     let mins = Math.floor(time / 60);
     let secs = time % 60;
     setMinutes(mins);
@@ -128,16 +116,19 @@ const Game: NextPage = () => {
   }, [level]);
 
   useEffect(() => {
-    console.log("timer running");
-    if ((seconds === 0 && minutes === 0) || levelComplete) return;
+    if (levelComplete) return;
+    if (seconds === 0 && minutes === 0) {
+      setTimeUp(true);
+      return;
+    }
     const interval =
       seconds > 0
         ? setInterval(() => {
             setSeconds((prevSeconds) => prevSeconds - 1);
           }, 1000)
         : setInterval(() => {
-            setMinutes((prevMinutes) => prevMinutes - 1);
             setSeconds(59);
+            setMinutes((prevMinutes) => prevMinutes - 1);
           }, 1000);
     return () => {
       if (interval) {
@@ -146,9 +137,11 @@ const Game: NextPage = () => {
     };
   }, [seconds, minutes]);
 
+  //Return
+
   return (
     <section className="container">
-      {!levelComplete && (
+      {!levelComplete && !timeUp && (
         <Level
           level={level}
           memoryCards={memoryCards}
@@ -160,8 +153,13 @@ const Game: NextPage = () => {
           cardTwo={cardTwo}
         />
       )}
+      {timeUp && (
+        <Panel title="You ran out of time!">
+          <GameOver score={score} />
+        </Panel>
+      )}
       {levelComplete &&
-        (level < 3 ? (
+        (level < 7 ? (
           <Panel title={`Level ${level} Complete!`}>
             <NextLevel
               level={level}
@@ -178,7 +176,7 @@ const Game: NextPage = () => {
           </Panel>
         ) : (
           <Panel title="You completed the game!">
-            <GameWon score={score} />
+            <GameOver score={score} />
           </Panel>
         ))}
     </section>
