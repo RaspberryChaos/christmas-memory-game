@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Icon from "../components/Icon";
-import Modal from "../components/Modal";
+import Panel from "../components/Panel";
 
 const Help: NextPage = () => {
   return (
@@ -10,7 +10,7 @@ const Help: NextPage = () => {
         <title>Christmas Memory Game - How to Play</title>
       </Head>
       <section className="container">
-        <Modal title="How to Play">
+        <Panel title="How to Play">
           <p style={{ paddingLeft:"50px", paddingRight:"50px" }}>
             Start the game by clicking a card to flip it over and see the image.
             Then try to find another card with the same image to match a pair.
@@ -24,7 +24,7 @@ const Help: NextPage = () => {
             <Icon src="/imgs/buttons/back.png" link="/" />
             <Icon src="/imgs/buttons/play.png" link="/game" />
           </div>
-        </Modal>
+        </Panel>
       </section>
     </>
   );
