@@ -3,11 +3,13 @@ import Head from "next/head";
 import Image from "next/image";
 import Icon from "../components/Icon";
 import Panel from "../components/Panel";
+import MusicPlayer from "../components/MusicPlayer";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
     <section className="container">
+      {/* <MusicPlayer /> */}
       <Panel title="Christmas Memory Game">
         <div className={styles.playBtnContainer}>
           <a href="/game">
