@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Timer from "../components/Timer";
 import Modal from "../components/Modal";
+import NextLevel from "../components/NextLevel";
 import { cardList, CardType } from "../levels";
 import styles from "../styles/Game.module.css";
 
@@ -178,7 +179,8 @@ const Game: NextPage = () => {
         </>
       )}
       {levelComplete && (
-        <Modal level={level} score={score} minutes={minutes} seconds={seconds}>
+        <Modal title={`Level ${level} Complete!`}>
+          <NextLevel level={level} score={score} minutes={minutes} seconds={seconds} />
           <button onClick={() => setLevel((prev) => prev + 1)}>
             Next Level!
           </button>

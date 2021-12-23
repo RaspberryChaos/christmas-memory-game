@@ -20,11 +20,6 @@
   text-align: center;
 }
 
-.text {
-  text-shadow: var(--shadow-headings);
-  font-size: 20px;
-}
-
 /*MEDIA QUERIES*/
 
 /*Extra Small, Mobile*/
@@ -38,9 +33,6 @@
     font-size: 40px;
   }
 }
-/* Small Devices, Tablets */
-@media (min-width: 768px) {
-}
 
 /* Medium Devices, Desktops */
 @media (min-width: 992px) {
@@ -51,8 +43,5 @@
   }
   .title {
     font-size: 76px;
-  }
-  .text {
-    font-size: 30px;
   }
 }
