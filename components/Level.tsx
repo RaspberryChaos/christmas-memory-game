@@ -28,8 +28,8 @@ const Level: React.FC<Props> = ({
   return (
     <>
       <div className={styles.iconContainer}>
-        <Icon src="/imgs/buttons/homeBtn.png" link="/" />
-        <Icon src="/imgs/buttons/sound-off.png" />
+        <Icon src="/imgs/buttons/homeBtn.png" link="/" alt="home button" />
+        <Icon src="/imgs/buttons/sound-off.png" alt="sound off button" />
       </div>
       <div className={styles.levelContainer}>
         <h2 className={styles.title}>Level {level}</h2>

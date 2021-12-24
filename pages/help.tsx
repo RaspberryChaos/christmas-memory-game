@@ -21,8 +21,8 @@ const Help: NextPage = () => {
             completed and any time remaining.
           </p>
           <div style={{ display: "flex" }}>
-            <Icon src="/imgs/buttons/back.png" link="/" />
-            <Icon src="/imgs/buttons/play.png" link="/game" />
+            <Icon src="/imgs/buttons/back.png" link="/" alt="back button"/>
+            <Icon src="/imgs/buttons/play.png" link="/game" alt="play button" />
           </div>
         </Panel>
       </section>

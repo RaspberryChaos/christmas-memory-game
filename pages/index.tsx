@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import Icon from "../components/Icon";
 import Panel from "../components/Panel";
@@ -12,20 +13,21 @@ const Home: NextPage = () => {
       {/* <MusicPlayer /> */}
       <Panel title="Christmas Memory Game">
         <div className={styles.playBtnContainer}>
-          <a href="/game">
+          <Link href="/game" passHref>
             <Image
               src={"/imgs/buttons/play.png"}
               width="120"
               height="120"
               layout="intrinsic"
               priority={true}
+              alt="play button"
             />
-          </a>
+          </Link>
         </div>
         <div className={styles.iconContainer}>
-          <Icon src="/imgs/buttons/help.png" link="/help"/>
-          <Icon src="/imgs/buttons/highScore.png" link="highscores" />
-          <Icon src="/imgs/buttons/sound-off.png" />
+          <Icon src="/imgs/buttons/help.png" link="/help"alt="help button"/>
+          <Icon src="/imgs/buttons/highScore.png" link="highscores" alt="high score table button" />
+          <Icon src="/imgs/buttons/sound-off.png" alt="sound-off button" />
         </div>
       </Panel>
     </section>

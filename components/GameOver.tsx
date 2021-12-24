@@ -10,8 +10,8 @@ const GameOver: React.FC<Props> = ({ score }) => {
     <>
       <p className={styles.text}>Final score: {score}</p>
       <div className={styles.iconContainer}>
-        <Icon src="/imgs/buttons/homeBtn.png" link="/" />
-        <Icon src="/imgs/buttons/highScore.png" link="/highscores" />
+        <Icon src="/imgs/buttons/homeBtn.png" link="/" alt="home button" />
+        <Icon src="/imgs/buttons/highScore.png" link="/highscores" alt="high score table button" />
       </div>
     </>
   );

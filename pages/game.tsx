@@ -171,7 +171,7 @@ const Game: NextPage = () => {
               className={styles.btnContainer}
               onClick={() => setLevel((prev) => prev + 1)}
             >
-              <Icon src="/imgs/buttons/play.png" />
+              <Icon src="/imgs/buttons/play.png" alt="play button" />
             </div>
           </Panel>
         ) : (
