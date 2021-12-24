@@ -20,20 +20,18 @@
 .levelContainer {
   display: flex;
   flex-direction: column;
-
   text-align: center;
 }
 
 .title {
-  font-size: 60px;
+  font-size: 50px;
   text-shadow: var(--shadow-text);
   padding: 10px;
 }
 
 .score {
-  font-size: 28px;
+  font-size: 24px;
   text-shadow: var(--shadow-text);
-  padding-bottom: 10px;
 }
 
 .iconContainer {

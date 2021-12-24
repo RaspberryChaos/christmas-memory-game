@@ -38,7 +38,7 @@ const Level: React.FC<Props> = ({
           <Timer minutes={minutes} seconds={seconds} />
         </div>
         <div
-          style={{ display: "grid", gridGap: "20px" }}
+          style={{ display: "grid", gridGap: "15px" }}
           className={
             level === 1
               ? styles.level1

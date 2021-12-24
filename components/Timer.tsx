@@ -4,7 +4,7 @@ type Props = {
 };
 
 const timerStyle = {
-  fontSize: 30,
+  fontSize: 24,
   margin: 10,
   textShadow: `var(--shadow-text)`,
 };
