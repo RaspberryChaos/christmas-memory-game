@@ -159,7 +159,7 @@ const Game: NextPage = () => {
         </Panel>
       )}
       {levelComplete &&
-        (level < 7 ? (
+        (level < 8 ? (
           <Panel title={`Level ${level} Complete!`}>
             <NextLevel
               level={level}

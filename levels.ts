@@ -10,7 +10,7 @@ export const cardList: CardType[] = [
   { name: "santa", src: "/cardImgs/santa.png", matched: false },
   { name: "penguin", src: "/cardImgs/penguin.png", matched: false },
   { name: "reindeer", src: "/cardImgs/reindeer.png", matched: false },
-  { name: "candy canes", src: "/cardImgs/candyCanes.png", matched: false },
+  { name: "candy canes", src: "/cardImgs/candy-canes.png", matched: false },
   { name: "gingerbread", src: "/cardImgs/gingerbread.png", matched: false },
   { name: "holly", src: "/cardImgs/holly.png", matched: false },
   { name: "bells", src: "/cardImgs/bells.png", matched: false },
