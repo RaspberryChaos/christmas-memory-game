@@ -15,13 +15,13 @@
 
 body {
   font-family: var(--ff-headings);
-  color: var;
+  color: var(--clr-headings);
 }
 
 .container {
   background-color: rgb(32, 76, 116);
   height: 100vh;
-  background-image: url("../public/imgs/background.png");
+  background-image: url("/imgs/background.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
