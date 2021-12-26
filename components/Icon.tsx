@@ -12,6 +12,7 @@ const Icon: React.FC<Props> = ({ src, link, alt }) => {
     <div style={{ margin: "20px" }}>
       {link ? (
         <Link href={link} passHref>
+          <a>
           <Image
             src={src}
             width="100"
@@ -20,6 +21,7 @@ const Icon: React.FC<Props> = ({ src, link, alt }) => {
             priority={true}
             alt={alt}
           />
+          </a>
         </Link>
       ) : (
         <Image

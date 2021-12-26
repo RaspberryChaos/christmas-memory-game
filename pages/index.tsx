@@ -14,6 +14,7 @@ const Home: NextPage = () => {
       <Panel title="Christmas Memory Game">
         <div className={styles.playBtnContainer}>
           <Link href="/game" passHref>
+            <a>
             <Image
               src={"/imgs/buttons/play.png"}
               width="120"
@@ -22,11 +23,12 @@ const Home: NextPage = () => {
               priority={true}
               alt="play button"
             />
+            </a>
           </Link>
         </div>
         <div className={styles.iconContainer}>
           <Icon src="/imgs/buttons/help.png" link="/help"alt="help button"/>
-          <Icon src="/imgs/buttons/highScore.png" link="highscores" alt="high score table button" />
+          <Icon src="/imgs/buttons/highScore.png" link="/highscores" alt="high score table button" />
           <Icon src="/imgs/buttons/sound-off.png" alt="sound-off button" />
         </div>
       </Panel>

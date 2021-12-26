@@ -23,7 +23,7 @@ const HighScores: NextPage<Props> = ({ highScores }) => {
       <section className="container">
         <Panel title="High Score Table">
           {highScores.map((score, i) => (
-            <p>
+            <p key={i}>
               {i + 1}. {score.name} {score.score}
             </p>
           ))}
