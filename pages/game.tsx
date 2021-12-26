@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
+import { MongoClient } from "mongodb";
 import Panel from "../components/Panel";
 import Icon from "../components/Icon";
 import Level from "../components/Level";
@@ -8,7 +9,11 @@ import NextLevel from "../components/NextLevel";
 import { cardList, CardType } from "../levels";
 import styles from "../styles/Game.module.css";
 
-const Game: NextPage = () => {
+type Props = {
+  minScore: number;
+};
+
+const Game: NextPage<Props> = ({ minScore }) => {
   //State
   const [memoryCards, setMemoryCards] = useState<CardType[] | []>([]);
   const [cardOne, setCardOne] = useState<CardType | null>(null);
@@ -155,7 +160,7 @@ const Game: NextPage = () => {
       )}
       {timeUp && (
         <Panel title="You ran out of time!">
-          <GameOver score={score} />
+          <GameOver score={score} minScore={minScore} />
         </Panel>
       )}
       {levelComplete &&
@@ -176,11 +181,41 @@ const Game: NextPage = () => {
           </Panel>
         ) : (
           <Panel title="You completed the game!">
-            <GameOver score={score} />
+            <GameOver score={score} minScore={minScore} />
           </Panel>
         ))}
     </section>
   );
 };
+
+export async function getStaticProps() {
+  const user = process.env.DB_USER;
+  const password = process.env.DB_PASS;
+
+  let client;
+  try {
+    client = await MongoClient.connect(
+      `mongodb+srv://${user}:${password}@cluster0.ms32h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+    );
+  } catch (error) {
+    console.log("Could not connect to database.");
+    return;
+  }
+
+  const db = client.db();
+  const scoresCollection = db.collection("highScores");
+
+  let scores = await scoresCollection.find().project({score: 1}).toArray();
+  scores = scores.sort((a, b) => b.score - a.score).slice(0, 5);
+  const minScore = scores[4].score;
+  client.close();
+
+  return {
+    props: {
+      minScore: minScore
+    },
+    revalidate: 60,
+  };
+}
 
 export default Game;

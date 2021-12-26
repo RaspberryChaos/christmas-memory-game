@@ -1,0 +1,53 @@
+.iconContainer {
+    display: flex;
+}
+
+.text {
+    text-shadow: var(--shadow-text);
+    font-size: 30px;
+    animation: fadeIn 1s;
+  }
+
+  .inputDiv {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .input {
+    font-size: 28px;
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
+    border: none;
+  }
+  
+  .btnSubmit {
+    color: var(--clr-headings);
+    background-color: #91ccdd;
+    font-weight: bold;
+    font-size: 28px;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 0 10px 10px 0;
+    padding: 10px;
+    border: none;
+    border-left: 1px solid black;
+  }
+
+  .btnSubmit:hover {
+    background-color: var(--clr-headings);
+    color: #91ccdd;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: 992px) {
+      .text {
+          font-size: 50px;
+      }
+  }
