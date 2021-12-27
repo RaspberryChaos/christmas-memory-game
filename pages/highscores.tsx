@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { MongoClient } from "mongodb";
 import Head from "next/head";
 import Icon from "../components/Icon";
+import IconContainer from "../components/IconContainer";
 import Panel from "../components/Panel";
 
 type Score = {
@@ -27,10 +28,10 @@ const HighScores: NextPage<Props> = ({ highScores }) => {
               {i + 1}. {score.name} {score.score}
             </p>
           ))}
-          <div style={{ display: "flex" }}>
+          <IconContainer>
             <Icon src="/imgs/buttons/homeBtn.png" link="/" alt="home button" />
             <Icon src="/imgs/buttons/play.png" link="/game" alt="play button" />
-          </div>
+          </IconContainer>
         </Panel>
       </section>
     </>

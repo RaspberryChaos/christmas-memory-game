@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Icon from "./Icon";
+import IconContainer from "./IconContainer";
 import styles from "../styles/GameOver.module.css";
 
 type Props = {
@@ -55,14 +56,14 @@ const GameOver: React.FC<Props> = ({ score, minScore }) => {
           </div>
         </>
       ) : null}
-      <div className={styles.iconContainer}>
+      <IconContainer>
         <Icon src="/imgs/buttons/homeBtn.png" link="/" alt="home button" />
         <Icon
           src="/imgs/buttons/highScore.png"
           link="/highscores"
           alt="high score table button"
         />
-      </div>
+      </IconContainer>
     </>
   );
 };

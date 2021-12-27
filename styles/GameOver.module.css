@@ -1,9 +1,3 @@
-.iconContainer {
-  display: flex;
-  width: 220px;
-  margin-top: 16px;
-}
-
 .text {
   text-shadow: var(--shadow-text);
   font-size: 24px;
@@ -56,11 +50,6 @@
     width: 460px;
     padding: 5px;
   }
-
-  .iconContainer {
-    width: 180px;
-    margin-top: 0;
-  }
 }
 
 @media (min-width: 992px) {
@@ -75,10 +64,5 @@
   }
   .btnSubmit {
     font-size: 28px;
-  }
-
-  .iconContainer {
-    width: 300px;
-    margin-top: 16px;
   }
 }
