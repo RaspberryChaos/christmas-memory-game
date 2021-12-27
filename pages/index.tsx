@@ -22,6 +22,7 @@ const Home: NextPage = () => {
               layout="intrinsic"
               priority={true}
               alt="play button"
+              className="global-icon"
             />
             </a>
           </Link>

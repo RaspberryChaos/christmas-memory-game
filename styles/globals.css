@@ -11,6 +11,8 @@
   --shadow-headings: 4px 4px 0px rgba(0, 0, 0, 0.5);
   --shadow-text: 2px 2px 0px rgba(0, 0, 0, 0.5);
   --clr-headings: #e3f3f6;
+  --clr-blue: #486aa5;
+  --clr-paleBlue: #91ccdd;
 }
 
 body {
@@ -29,4 +31,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.global-icon:hover {
+  transform: scale(0.9);
 }

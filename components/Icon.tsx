@@ -20,6 +20,7 @@ const Icon: React.FC<Props> = ({ src, link, alt }) => {
             layout="intrinsic"
             priority={true}
             alt={alt}
+            className="global-icon"
           />
           </a>
         </Link>
@@ -31,6 +32,7 @@ const Icon: React.FC<Props> = ({ src, link, alt }) => {
           layout="intrinsic"
           priority={true}
           alt={alt}
+          className="global-icon"
         />
       )}
     </div>
