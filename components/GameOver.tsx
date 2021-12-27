@@ -19,19 +19,19 @@ const GameOver: React.FC<Props> = ({ score, minScore }) => {
   };
 
   const handleAddHighScore = (name: string, score: number) => {
-     fetch("/api/highScore", {
-        method: "POST",
-        body: JSON.stringify({ name: name, score: score, date: new Date() }),
-        headers: { "Content-Type": "application/json" },
-      }).then((res) => {
-        if(res.ok) router.push("/highscores")
-      })
-    }
+    fetch("/api/highScore", {
+      method: "POST",
+      body: JSON.stringify({ name: name, score: score, date: new Date() }),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => {
+      if (res.ok) router.push("/highscores");
+    });
+  };
 
   useEffect(() => {
     // Prefetch the high score page
-    router.prefetch('/highscores')
-  }, [])
+    router.prefetch("/highscores");
+  }, []);
 
   return (
     <>
@@ -40,11 +40,18 @@ const GameOver: React.FC<Props> = ({ score, minScore }) => {
         <>
           <p className={styles.text}>Congratulations, you got a high score!</p>
           <div className={styles.inputDiv}>
-          <input placeholder="Enter your name" onChange={handleNameInput} className={styles.input} />
+            <input
+              placeholder="Enter your name"
+              onChange={handleNameInput}
+              className={styles.input}
+            />
 
-          <button className={styles.btnSubmit} onClick={(e) => handleAddHighScore(name, score)}>
-            Submit
-          </button>
+            <button
+              className={styles.btnSubmit}
+              onClick={(e) => handleAddHighScore(name, score)}
+            >
+              Submit
+            </button>
           </div>
         </>
       ) : null}
