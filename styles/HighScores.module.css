@@ -1,0 +1,22 @@
+.text {
+  text-shadow: var(--shadow-text-sm);
+  font-size: 20px;
+  animation: fadeIn 1s;
+  width: 280px;
+  text-align: center;
+  padding: 5px;
+}
+
+@media (min-width: 500px) {
+  .text {
+    font-size: 16px;
+    padding: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .text {
+    font-size: 28px;
+    padding: 5px;
+  }
+}

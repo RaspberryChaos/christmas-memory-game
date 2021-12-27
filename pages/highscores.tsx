@@ -4,6 +4,7 @@ import Head from "next/head";
 import Icon from "../components/Icon";
 import IconContainer from "../components/IconContainer";
 import Panel from "../components/Panel";
+import styles from "../styles/HighScores.module.css";
 
 type Score = {
   name: string;
@@ -24,7 +25,7 @@ const HighScores: NextPage<Props> = ({ highScores }) => {
       <section className="container">
         <Panel title="High Score Table">
           {highScores.map((score, i) => (
-            <p key={i}>
+            <p key={i} className={styles.text}>
               {i + 1}. {score.name} {score.score}
             </p>
           ))}
