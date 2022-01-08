@@ -2,19 +2,25 @@
   grid-template-columns: 1fr 1fr;
 }
 .level2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.level3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.level4 {
   grid-template-columns: repeat(4, 1fr);
 }
 .level5 {
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 .level6 {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 .level7 {
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 .level8 {
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .levelContainer {
@@ -24,13 +30,13 @@
 }
 
 .title {
-  font-size: 50px;
+  font-size: 20px;
   text-shadow: var(--shadow-text);
-  padding: 10px;
+  padding: 5px;
 }
 
 .score {
-  font-size: 24px;
+  font-size: 16px;
   text-shadow: var(--shadow-text);
 }
 
@@ -40,4 +46,40 @@
   align-self: flex-end;
   position: absolute;
   top: 0;
+}
+
+/*MEDIA QUERIES*/
+
+/*Extra Small, Mobile*/
+@media (min-width: 500px) {
+  .level2 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .level3 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .level4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .level5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .level6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .level7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .level8 {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .title {
+    font-size: 50px;
+    padding: 10px;
+  }
+
+  .score {
+    font-size: 24px;
+  }
 }

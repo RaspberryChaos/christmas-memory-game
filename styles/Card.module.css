@@ -1,6 +1,6 @@
 .card {
-  width: 100px;
-  height: 120px;
+  width: 50px;
+  height: 60px;
   background-color: rgb(53 157 247);
   background-size: cover;
   display: flex;
@@ -31,4 +31,21 @@
 .cardBackClicked {
   transform: rotateY(90deg);
   transition-delay: 0s;
+}
+
+/*MEDIA QUERIES*/
+
+/*Extra Small, Mobile*/
+@media (min-width: 500px) {
+  .card {
+    width: 75px;
+    height: 90px;
+  }
+}
+/* Medium Devices, Desktops */
+@media (min-width: 992px) {
+  .card {
+    width: 100px;
+    height: 120px;
+  }
 }

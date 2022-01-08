@@ -42,8 +42,12 @@ const Level: React.FC<Props> = ({
           className={
             level === 1
               ? styles.level1
-              : level < 5
+              : level === 2
               ? styles.level2
+              : level === 3
+              ? styles.level3
+              : level === 4
+              ? styles.level4
               : level === 5
               ? styles.level5
               : level === 6
