@@ -11,9 +11,11 @@ import styles from "../styles/Game.module.css";
 
 type Props = {
   minScore: number;
+  music: boolean;
+  toggleMusic: () => void;
 };
 
-const Game: NextPage<Props> = ({ minScore }) => {
+const Game: NextPage<Props> = ({ minScore, music, toggleMusic }) => {
   //State
   const [memoryCards, setMemoryCards] = useState<CardType[] | []>([]);
   const [cardOne, setCardOne] = useState<CardType | null>(null);
@@ -156,6 +158,8 @@ const Game: NextPage<Props> = ({ minScore }) => {
           handleChoice={handleChoice}
           cardOne={cardOne}
           cardTwo={cardTwo}
+          music={music}
+          toggleMusic={toggleMusic}
         />
       )}
       {timeUp && (
@@ -205,16 +209,16 @@ export async function getStaticProps() {
   const db = client.db();
   const scoresCollection = db.collection("highScores");
 
-  let scores = await scoresCollection.find().project({score: 1}).toArray();
+  let scores = await scoresCollection.find().project({ score: 1 }).toArray();
   scores = scores.sort((a, b) => b.score - a.score).slice(0, 5);
   const minScore = scores[4].score;
   client.close();
 
   return {
     props: {
-      minScore: minScore
+      minScore: minScore,
     },
-    revalidate: 60,
+    revalidate: 1,
   };
 }
 

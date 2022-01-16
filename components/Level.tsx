@@ -13,6 +13,8 @@ interface Props {
   handleChoice: (card: CardType) => void;
   cardOne: CardType | null;
   cardTwo: CardType | null;
+  music: boolean;
+  toggleMusic: () => void;
 }
 
 const Level: React.FC<Props> = ({
@@ -24,12 +26,26 @@ const Level: React.FC<Props> = ({
   handleChoice,
   cardOne,
   cardTwo,
+  music,
+  toggleMusic,
 }) => {
   return (
     <>
       <div className={styles.iconContainer}>
         <Icon src="/imgs/buttons/homeBtn.png" link="/" alt="home button" />
-        <Icon src="/imgs/buttons/sound-off.png" alt="sound off button" />
+        {music ? (
+          <Icon
+            src="/imgs/buttons/sound-off.png"
+            alt="sound-off button"
+            toggleMusic={toggleMusic}
+          />
+        ) : (
+          <Icon
+            src="/imgs/buttons/sound-on.png"
+            alt="sound-on button"
+            toggleMusic={toggleMusic}
+          />
+        )}
       </div>
       <div className={styles.levelContainer}>
         <h2 className={styles.title}>Level {level}</h2>
